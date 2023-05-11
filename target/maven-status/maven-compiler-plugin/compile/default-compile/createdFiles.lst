@@ -1,0 +1,9 @@
+com\gordos\dto\AddressInResponseDTO$AddressInResponseDTOBuilder.class
+com\gordos\entity\AddressEntity.class
+com\gordos\repository\impl\AddressRepositoryImpl.class
+com\gordos\service\AddressesService.class
+com\gordos\controller\AddressesController.class
+com\gordos\dto\AddressInResponseDTO.class
+com\gordos\config\FirestoreConfig.class
+com\gordos\Application.class
+com\gordos\repository\AddressRepository.class
