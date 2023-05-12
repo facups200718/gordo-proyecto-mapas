@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @Controller
 @RequestMapping("/api/v1")
 public class BuildingsController {
@@ -19,7 +20,7 @@ public class BuildingsController {
     @ResponseBody
     public ResponseEntity<?> getBuildingsByCity(@PathVariable String city) {
         try {
-            return ResponseEntity.ok(buildingsService.getAddresses(city));
+            return ResponseEntity.ok(buildingsService.getBuildings(city));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

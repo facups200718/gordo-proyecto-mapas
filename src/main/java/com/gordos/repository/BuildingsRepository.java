@@ -5,7 +5,7 @@ import com.gordos.dto.BuildingDTO;
 import java.util.List;
 
 public interface BuildingsRepository {
-    List<BuildingDTO> getAllAddresses(String city);
+    List<BuildingDTO> getAllBuildings(String city);
 
     void addBuilding(BuildingDTO building);
 

@@ -17,9 +17,9 @@ public class BuildingsService {
         this.buildingsRepository = buildingsRepository;
     }
 
-    public BuildingsInResponseDTO getAddresses(String city) {
-        List<BuildingDTO> buildingDTOList = buildingsRepository.getAllAddresses(city);
-        return BuildingsInResponseDTO.builder().addresses(buildingDTOList).build();
+    public BuildingsInResponseDTO getBuildings(String city) {
+        List<BuildingDTO> buildingDTOList = buildingsRepository.getAllBuildings(city);
+        return BuildingsInResponseDTO.builder().buildings(buildingDTOList).build();
     }
 
     public void addBuilding(BuildingInRequestDTO building) {

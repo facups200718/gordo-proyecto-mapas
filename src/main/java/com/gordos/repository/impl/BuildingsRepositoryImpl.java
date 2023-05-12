@@ -27,7 +27,7 @@ public class BuildingsRepositoryImpl implements BuildingsRepository {
     }
 
     @Override
-    public List<BuildingDTO> getAllAddresses(String city) {
+    public List<BuildingDTO> getAllBuildings(String city) {
         List<BuildingDTO> buildingsList = new ArrayList<>();
 
         CollectionReference buildings = firestore.collection(COLLECTION_NAME);
@@ -72,7 +72,7 @@ public class BuildingsRepositoryImpl implements BuildingsRepository {
         data.put("architect", building.getArchitect());
         data.put("builtDate", building.getBuiltDate());
         data.put("city", building.getCity());
-        data.put("enabled", building.getEnabled());
+        data.put("enabled", Boolean.TRUE);
         data.put("image", building.getImage());
         data.put("protected", building.getIsProtected());
         data.put("lat", building.getLat());
@@ -102,11 +102,8 @@ public class BuildingsRepositoryImpl implements BuildingsRepository {
     @Override
     public void deleteBuildingByUuid(String uuid) {
         try {
-            // Accede a la colección de buildings
             DocumentReference document = firestore.collection(COLLECTION_NAME).document(uuid);
-
-            // Actualiza el campo "enabled" a false
-            ApiFuture<WriteResult> future = document.update("enabled", false);
+            ApiFuture<WriteResult> future = document.update("enabled", Boolean.FALSE);
             future.get();
         } catch (Exception e) {
             throw new RuntimeException("Error al desactivar el building con uuid " + uuid, e);

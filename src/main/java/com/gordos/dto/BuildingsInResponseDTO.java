@@ -9,5 +9,5 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 @Builder
 public class BuildingsInResponseDTO {
-    List<BuildingDTO> addresses;
+    List<BuildingDTO> buildings;
 }
