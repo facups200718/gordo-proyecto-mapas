@@ -34,7 +34,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"image\": \"ok2\",\r\n    \"period\": \"ok2\",\r\n    \"city\": \"ok\",\r\n    \"architect\": \"ok2\",\r\n    \"type\": \"ok2\",\r\n    \"uuid\": \"ok2\",\r\n    \"longitude\": \"ok2\",\r\n    \"builtDate\": \"ok2\",\r\n    \"isProtected\": \"ok2\",\r\n    \"name\": \"ok2\",\r\n    \"location\": \"ok2\",\r\n    \"style\": \"ok2\",\r\n    \"state\": \"ok2\",\r\n    \"lat\": \"ok2\",\r\n    \"enabled\": true\r\n}",
+					"raw": "{\r\n    \"image\": \"ok2\",\r\n    \"period\": \"ok2\",\r\n    \"city\": \"ok\",\r\n    \"architect\": \"ok2\",\r\n    \"type\": \"ok2\",\r\n    \"uuid\": \"ok2\",\r\n    \"longitude\": \"ok2\",\r\n    \"builtDate\": \"ok2\",\r\n    \"isProtected\": \"ok2\",\r\n    \"name\": \"ok2\",\r\n    \"location\": \"ok2\",\r\n    \"style\": \"ok2\",\r\n    \"state\": \"ok2\",\r\n    \"lat\": \"ok2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -102,6 +102,37 @@
 						"v1",
 						"buildings",
 						"zN0n1KY66FgYMHpj7rSP"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Facu/Desktop/Juegos/27650667_1934784159883291_218597894_o.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/images/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"images",
+						"upload"
 					]
 				}
 			},
