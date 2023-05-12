@@ -22,5 +22,4 @@ public class BuildingDTO {
     private String style;
     private String state;
     private String lat;
-    private Boolean enabled;
 }

@@ -42,7 +42,6 @@ public class BuildingsRepositoryImpl implements BuildingsRepository {
                         .architect((String) document.get("architect"))
                         .builtDate((String) document.get("builtDate"))
                         .city((String) document.get("city"))
-                        .enabled((Boolean) document.get("enabled"))
                         .image((String) document.get("image"))
                         .isProtected((String) document.get("protected"))
                         .lat((String) document.get("lat"))

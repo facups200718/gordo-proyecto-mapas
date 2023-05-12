@@ -45,7 +45,6 @@ public class BuildingsService {
                 .architect(buildingInRequestDTO.getArchitect())
                 .builtDate(buildingInRequestDTO.getBuiltDate())
                 .city(buildingInRequestDTO.getCity())
-                .enabled(buildingInRequestDTO.getEnabled())
                 .image(buildingInRequestDTO.getImage())
                 .isProtected(buildingInRequestDTO.getIsProtected())
                 .lat(buildingInRequestDTO.getLat())
