@@ -72,6 +72,7 @@ public class BuildingsRepositoryImpl implements BuildingsRepository {
         data.put("architect", building.getArchitect());
         data.put("builtDate", building.getBuiltDate());
         data.put("city", building.getCity());
+        data.put("enabled", building.getEnabled());
         data.put("image", building.getImage());
         data.put("protected", building.getIsProtected());
         data.put("lat", building.getLat());
