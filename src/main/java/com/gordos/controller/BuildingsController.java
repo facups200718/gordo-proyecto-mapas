@@ -1,13 +1,14 @@
 package com.gordos.controller;
 
-import com.gordos.dto.BuildingInRequestDTO;
-import com.gordos.dto.BuildingDTO;
+import com.gordos.dto.*;
 import com.gordos.service.BuildingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @CrossOrigin
 @Controller
@@ -16,40 +17,39 @@ public class BuildingsController {
     @Autowired
     private BuildingsService buildingsService;
 
-    @GetMapping("/{city}/buildings")
+    @PostMapping("/buildings")
     @ResponseBody
-    public ResponseEntity<?> getBuildingsByCity(@PathVariable String city) {
-        try {
-            return ResponseEntity.ok(buildingsService.getBuildings(city));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public ResponseEntity<BuildingsInResponseDTO> getBuildingsByCity(@RequestBody BuildingsByCityInRequestDTO buildingsByCityInRequestDTO) {
+        return ResponseEntity.ok(buildingsService.getBuildingsByCity(buildingsByCityInRequestDTO.getCity()));
     }
 
     @PostMapping("/building")
-    public ResponseEntity<?> addBuilding(@RequestBody BuildingInRequestDTO building) {
+    public ResponseEntity<ResponseDTO> addBuilding(@RequestBody BuildingInRequestDTO building) {
         try {
             buildingsService.addBuilding(building);
-            return ResponseEntity.ok("Building added successfully");
+            return ResponseEntity.ok(ResponseDTO.builder().response("Building added successfully.").build());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.ok(ResponseDTO.builder().response("Building addition failed.").build());
         }
     }
 
     @PutMapping("/buildings/{uuid}")
     @ResponseBody
-    public ResponseEntity<BuildingDTO> updateBuildingByUUID(@PathVariable String uuid, @RequestBody BuildingInRequestDTO buildingDTO) {
-            BuildingDTO updatedBuildingDTO = buildingsService.updateBuildingByUUID(uuid, buildingDTO);
-        if (updatedBuildingDTO != null) {
-            return ResponseEntity.ok(updatedBuildingDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<?> updateBuildingByUUID(@PathVariable String uuid, @RequestBody BuildingInRequestDTO buildingDTO) {
+        BuildingDTO buildingInResponseDTO = buildingsService.updateBuildingByUUID(uuid, buildingDTO);
+        return Objects.nonNull(buildingInResponseDTO)
+                ? ResponseEntity.ok(buildingInResponseDTO)
+                : ResponseEntity.ok(ResponseDTO.builder().response("Building update failed.").build());
     }
 
     @DeleteMapping("/buildings/{uuid}")
-    public ResponseEntity<Void> deleteBuilding(@PathVariable String uuid) {
-        buildingsService.deleteBuildingByUuid(uuid);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ResponseDTO> deleteBuilding(@PathVariable String uuid) {
+        return ResponseEntity.ok(buildingsService.deleteBuildingByUuid(uuid));
+    }
+
+    @GetMapping("/buildings")
+    @ResponseBody
+    public ResponseEntity<BuildingsInResponseDTO> getAllBuildings() {
+        return ResponseEntity.ok(buildingsService.getAllBuildings());
     }
 }

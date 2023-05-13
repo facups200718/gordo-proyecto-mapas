@@ -1,15 +1,22 @@
 package com.gordos.service;
 
-import com.gordos.dto.BuildingInRequestDTO;
-import com.gordos.dto.BuildingsInResponseDTO;
-import com.gordos.dto.BuildingDTO;
+import com.gordos.dto.*;
+import com.gordos.entity.BuildingEntity;
+import com.gordos.mapper.BuildingMapper;
 import com.gordos.repository.BuildingsRepository;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BuildingsService {
+    private static final String SUCCESSFUL_DELETION = "Building deletion was successful.";
+    private static final String SUCCESSFUL_FAILURE = "Building deletion failed.";
+
     @Autowired
     BuildingsRepository buildingsRepository;
 
@@ -17,13 +24,18 @@ public class BuildingsService {
         this.buildingsRepository = buildingsRepository;
     }
 
-    public BuildingsInResponseDTO getBuildings(String city) {
-        List<BuildingDTO> buildingDTOList = buildingsRepository.getAllBuildings(city);
+    public BuildingsInResponseDTO getBuildingsByCity(String city) {
+        List<BuildingEntity> buildingEntityList = buildingsRepository.getBuildingsByCity(city);
+        List<BuildingDTO> buildingDTOList = new ArrayList<>();
+        for (BuildingEntity buildingEntity : buildingEntityList) {
+            BuildingDTO buildingDTO = BuildingMapper.toDTO(buildingEntity);
+            buildingDTOList.add(buildingDTO);
+        }
         return BuildingsInResponseDTO.builder().buildings(buildingDTOList).build();
     }
 
     public void addBuilding(BuildingInRequestDTO building) {
-       BuildingDTO buildingDTO = BuildingDTO.builder()
+        BuildingEntity buildingEntity = BuildingEntity.builder()
                .architect(building.getArchitect())
                .builtDate(building.getBuiltDate())
                .city(building.getCity())
@@ -38,10 +50,10 @@ public class BuildingsService {
                .style(building.getStyle())
                .type(building.getType())
                .build();
-       buildingsRepository.addBuilding(buildingDTO);
+       buildingsRepository.addBuilding(buildingEntity);
     }
     public BuildingDTO updateBuildingByUUID(String uuid, BuildingInRequestDTO buildingInRequestDTO) {
-        BuildingDTO buildingDTO = BuildingDTO.builder()
+        BuildingEntity buildingEntity = BuildingEntity.builder()
                 .architect(buildingInRequestDTO.getArchitect())
                 .builtDate(buildingInRequestDTO.getBuiltDate())
                 .city(buildingInRequestDTO.getCity())
@@ -57,11 +69,26 @@ public class BuildingsService {
                 .type(buildingInRequestDTO.getType())
                 .uuid(uuid)
                 .build();
-
-        return buildingsRepository.updateBuildingByUUID(uuid, buildingDTO);
+        return Objects.isNull(buildingsRepository.updateBuildingByUUID(uuid, buildingEntity))
+                ? null
+                : BuildingMapper.toDTO(buildingEntity);
     }
 
-    public void deleteBuildingByUuid(String uuid) {
-        buildingsRepository.deleteBuildingByUuid(uuid);
+    public ResponseDTO deleteBuildingByUuid(String uuid) {
+        return ResponseDTO.builder()
+                .response(Objects.nonNull(buildingsRepository.deleteBuildingByUuid(uuid))
+                        ? SUCCESSFUL_DELETION
+                        : SUCCESSFUL_FAILURE)
+                .build();
+    }
+
+    public BuildingsInResponseDTO getAllBuildings() {
+        List<BuildingEntity> buildingEntityList = buildingsRepository.getAllBuildings();
+        List<BuildingDTO> buildingDTOList = new ArrayList<>();
+        for (BuildingEntity buildingEntity : buildingEntityList) {
+            BuildingDTO buildingDTO = BuildingMapper.toDTO(buildingEntity);
+            buildingDTOList.add(buildingDTO);
+        }
+        return BuildingsInResponseDTO.builder().buildings(buildingDTOList).build();
     }
 }

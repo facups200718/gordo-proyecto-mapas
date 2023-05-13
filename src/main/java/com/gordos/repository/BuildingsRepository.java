@@ -1,15 +1,17 @@
 package com.gordos.repository;
 
-import com.gordos.dto.BuildingDTO;
+import com.gordos.entity.BuildingEntity;
 
 import java.util.List;
 
 public interface BuildingsRepository {
-    List<BuildingDTO> getAllBuildings(String city);
+    List<BuildingEntity> getBuildingsByCity(String city);
 
-    void addBuilding(BuildingDTO building);
+    void addBuilding(BuildingEntity building);
 
-    BuildingDTO updateBuildingByUUID(String uuid, BuildingDTO buildingDTO);
+    BuildingEntity updateBuildingByUUID(String uuid, BuildingEntity buildingDTO);
 
-    void deleteBuildingByUuid(String uuid);
+    String deleteBuildingByUuid(String uuid);
+
+    List<BuildingEntity> getAllBuildings();
 }
