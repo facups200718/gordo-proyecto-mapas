@@ -1,6 +1,0 @@
-spring:
-  cloud:
-    gcp:
-      credentials:
-        location: src/main/resources/gordos-proyecto-mapa-firebase-adminsdk-spt4v-0bbb41e8c2.json
-      projectId: gordos-proyecto-mapa

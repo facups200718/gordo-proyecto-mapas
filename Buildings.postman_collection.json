@@ -7,12 +7,12 @@
 	},
 	"item": [
 		{
-			"name": "Get buildings by city",
+			"name": "Get all buildings",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/ok/buildings",
+					"raw": "localhost:8080/api/v1/buildings",
 					"host": [
 						"localhost"
 					],
@@ -20,7 +20,35 @@
 					"path": [
 						"api",
 						"v1",
-						"ok",
+						"buildings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain buildings by city",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"villa gesell\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/buildings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
 						"buildings"
 					]
 				}
@@ -34,7 +62,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"image\": \"ok2\",\r\n    \"period\": \"ok2\",\r\n    \"city\": \"ok\",\r\n    \"architect\": \"ok2\",\r\n    \"type\": \"ok2\",\r\n    \"uuid\": \"ok2\",\r\n    \"longitude\": \"ok2\",\r\n    \"builtDate\": \"ok2\",\r\n    \"isProtected\": \"ok2\",\r\n    \"name\": \"ok2\",\r\n    \"location\": \"ok2\",\r\n    \"style\": \"ok2\",\r\n    \"state\": \"ok2\",\r\n    \"lat\": \"ok2\"\r\n}",
+					"raw": "{\r\n    \"image\": \"ok2\",\r\n    \"period\": \"ok2\",\r\n    \"city\": \"villa geselleele\",\r\n    \"architect\": \"ok2\",\r\n    \"type\": \"ok2\",\r\n    \"uuid\": \"ok2\",\r\n    \"longitude\": \"ok2\",\r\n    \"builtDate\": \"ok2\",\r\n    \"isProtected\": \"ok2\",\r\n    \"name\": \"ok2\",\r\n    \"location\": \"ok2\",\r\n    \"style\": \"ok23333\",\r\n    \"state\": \"ok2\",\r\n    \"lat\": \"ok2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -63,7 +91,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"image\": \"ok\",\r\n    \"period\": \"ok\",\r\n    \"city\": \"ok\",\r\n    \"architect\": \"ok\",\r\n    \"type\": \"ok\",\r\n    \"longitude\": \"ok\",\r\n    \"builtDate\": \"ok\",\r\n    \"isProtected\": \"ok\",\r\n    \"name\": \"ok\",\r\n    \"location\": \"ok\",\r\n    \"style\": \"ok\",\r\n    \"state\": \"oklahoma\",\r\n    \"lat\": \"ok\",\r\n    \"enabled\": false\r\n}",
+					"raw": "{\r\n    \"image\": \"ok\",\r\n    \"period\": \"ok\",\r\n    \"city\": \"ok\",\r\n    \"architect\": \"ok\",\r\n    \"type\": \"ok\",\r\n    \"longitude\": \"ok\",\r\n    \"builtDate\": \"ok\",\r\n    \"isProtected\": \"ok\",\r\n    \"name\": \"ok\",\r\n    \"location\": \"ok\",\r\n    \"style\": \"ok\",\r\n    \"state\": \"okhoma\",\r\n    \"lat\": \"ok\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +99,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/buildings/zN0n1KY66FgYMHpj7rSP",
+					"raw": "localhost:8080/api/v1/buildings/zN0n1KY6",
 					"host": [
 						"localhost"
 					],
@@ -80,7 +108,7 @@
 						"api",
 						"v1",
 						"buildings",
-						"zN0n1KY66FgYMHpj7rSP"
+						"zN0n1KY6"
 					]
 				}
 			},
@@ -92,7 +120,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/buildings/zN0n1KY66FgYMHpj7rSP",
+					"raw": "localhost:8080/api/v1/buildings/xVxipVZl3ItewPhA6sBF",
 					"host": [
 						"localhost"
 					],
@@ -101,7 +129,7 @@
 						"api",
 						"v1",
 						"buildings",
-						"zN0n1KY66FgYMHpj7rSP"
+						"xVxipVZl3ItewPhA6sBF"
 					]
 				}
 			},
@@ -118,7 +146,7 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/Facu/Desktop/Juegos/27650667_1934784159883291_218597894_o.jpg"
+							"src": "/C:/Users/Facu/Desktop/Juegos/1.png"
 						}
 					]
 				},
