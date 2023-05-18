@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @CrossOrigin
 @Controller
 @RequestMapping("/api/v1")
@@ -19,7 +21,7 @@ public class ImageController {
     private ImageService imageService;
 
     @PostMapping("/images/upload")
-    public ResponseEntity<ImageInResponseDTO> uploadImage(@RequestParam("image") MultipartFile image) {
+    public ResponseEntity<ImageInResponseDTO> uploadImage(@RequestParam("image") MultipartFile image) throws IOException {
         return ResponseEntity.ok(this.imageService.uploadImage(image));
     }
 }
