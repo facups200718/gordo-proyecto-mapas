@@ -91,6 +91,11 @@ public class BuildingsRepositoryImpl implements BuildingsRepository {
             ApiFuture<DocumentSnapshot> future = buildingRef.get();
             DocumentSnapshot doc = future.get();
             if (buildingExists(uuid, building.getCity())) {
+                Map<String, Object> updates = new HashMap<>();
+                building.getAllFields().forEach((fieldName, fieldValue) -> {
+                    updates.put(fieldName, fieldValue);
+                });
+                buildingRef.update(updates).get();
                 // El documento existe, devuelve la entidad correspondiente
                 BuildingEntity entity = doc.toObject(BuildingEntity.class);
                 return entity;
